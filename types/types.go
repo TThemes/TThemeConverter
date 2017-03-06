@@ -2,7 +2,7 @@ package types
 
 import "time"
 
-// ThemeParams is a struct containing theme parameteres to read or write
+// ThemeParams is a struct containing theme parameters to read or write
 type ThemeParams struct {
 	Divider    string
 	FileName   string
