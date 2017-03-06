@@ -1,0 +1,6 @@
+in/
+out/
+tmp/
+map/
+builds/
+make_all.sh
