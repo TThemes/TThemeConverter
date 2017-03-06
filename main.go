@@ -10,9 +10,7 @@ import (
 
 func main() {
 	fileIn := flag.String("in", "", "Use that file as input")
-	// fileIn := flag.String("in", "arc_dark.attheme", "Use that file as input")
 	fileOut := flag.String("out", "", "Use that file as output")
-	// fileOut := flag.String("out", "arc_dark.tdesktop-theme", "Use that file as output")
 	isOffline := flag.Bool("offline", false, "Allows you to run without internet connection if you provide it with map files for conversion")
 	flag.Parse()
 	if *isOffline {

@@ -31,7 +31,6 @@ func WriteThemeFile(fileout *string, thememap map[string]string, isTiledBg bool)
 	defer file.Close()
 
 	for key, value := range thememap {
-		// fmt.Println(value)
 		if writerParams.Argb {
 			if len(value) == 8 {
 				value = value[6:] + value[:6]
@@ -58,6 +57,7 @@ func WriteThemeFile(fileout *string, thememap map[string]string, isTiledBg bool)
 					log.Fatal(err)
 				}
 			}
+			os.Remove("out/colors.tdesktop-theme")
 		}
 	case "android":
 		{

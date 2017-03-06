@@ -37,13 +37,15 @@ func readMapFile(filename string) map[string]string {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		rule := strings.Split(scanner.Text(), "=")
-		key := rule[0]
-		value := rule[1]
-		if filemap[value] != "" {
-			value = filemap[value]
+		if scanner.Text() != "" {
+			rule := strings.Split(scanner.Text(), "=")
+			key := rule[0]
+			value := rule[1]
+			if filemap[value] != "" {
+				value = filemap[value]
+			}
+			filemap[key] = value
 		}
-		filemap[key] = value
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -63,7 +65,11 @@ func applyConvMap(thememap, convmap, transmap map[string]string, filein string) 
 	fname := strings.TrimSuffix(filein, filepath.Ext(filein))
 	outMap := make(map[string]string)
 	for key, value := range convmap {
-		outMap[key] = thememap[value]
+		if thememap[value] != "" {
+			outMap[key] = thememap[value]
+		} else {
+			fmt.Println("Warning: " + key + " is missing form your theme file")
+		}
 	}
 	overrideMap := readOverridesMapFile("in/" + fname)
 	for key, value := range overrideMap {

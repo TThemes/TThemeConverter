@@ -124,8 +124,11 @@ func themeReader(osname string) map[string]string {
 					inval, err := strconv.Atoi(rulevalue)
 					if err != nil {
 						rulevalue = strings.TrimPrefix(rulevalue, "#")
+						if len(rulevalue) == 8 {
+							rulevalue = rulevalue[2:8] + rulevalue[0:2]
+						}
 					} else {
-						tohex := ((uint32(inval) << 8) & 0xffffff00) | ((uint32(inval) >> 24) & 0xff)
+						tohex := ((inval << 8) & 0xffffff00) | ((inval >> 24) & 0xff)
 						rulevalue = fmt.Sprintf("%08x", tohex)
 					}
 				}
