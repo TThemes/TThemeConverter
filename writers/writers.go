@@ -10,6 +10,7 @@ import (
 	"github.com/mholt/archiver"
 )
 
+// WriteThemeFile saves theme file
 func WriteThemeFile(fileout *string, thememap map[string]string, isTiledBg bool) {
 	osname := utils.GuessOS(fileout)
 	var fname string
